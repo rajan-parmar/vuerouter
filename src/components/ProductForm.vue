@@ -60,6 +60,7 @@
                     this.price = "";
                     this.url = "";
                 }
+                this.$router.push("/");
             },
         }
     };

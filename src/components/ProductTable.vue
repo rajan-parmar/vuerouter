@@ -92,6 +92,7 @@
                         duration: 900
                     });
                 }
+                this.$router.push("/cart");
             },
             updateProduct(productId, product) {
                 let productInCart = this.$store.state.module2.addToCarts.filter(item => item.id === productId);
