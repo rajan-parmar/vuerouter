@@ -1,17 +1,17 @@
 <template>
     <div class="container">
-        <ProductTable/>
+        <ProductCarts/>
     </div>
 </template>
 
 <script>
     // @ is an alias to /src
-    import ProductTable from "@/components/ProductTable.vue";
+    import ProductCarts from "@/components/ProductCarts.vue";
 
     export default {
-        name: "Home",
+        name: "Cart",
         components: {
-            ProductTable
+            ProductCarts
         }
     };
 </script>
