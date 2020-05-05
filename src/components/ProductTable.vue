@@ -113,6 +113,11 @@
             },
             removeProduct(productId) {
                 this.$store.commit('removeProduct', productId);
+
+                this.$toasted.success('Product removed successfully', {
+                    position: 'top-right',
+                    duration: 900
+                });
             }
         }
     };
