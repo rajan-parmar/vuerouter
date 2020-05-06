@@ -46,7 +46,11 @@
                     </td>
 
                     <td>
-                        <button class="btn btn-danger mr-2" title="Delete Todo" @click="removeProduct(product.id)">
+                        <button class="btn btn-warning mr-2" title="Edit Product" @click="editProduct(product.id)">
+                            <i class="fas fa-edit text-light"></i>
+                        </button>
+
+                        <button class="btn btn-danger mr-2" title="Delete Product" @click="removeProduct(product.id)">
                             <i class="fas fa-trash-alt text-light"></i>
                         </button>
 
@@ -119,6 +123,9 @@
                     position: 'top-right',
                     duration: 900
                 });
+            },
+            editProduct(productId) {
+                this.$router.push("/edit/" + productId);
             }
         }
     };
