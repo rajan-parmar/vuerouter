@@ -48,7 +48,6 @@
                         name: this.name,
                         price: this.price,
                         url: this.url,
-                        isEdit: false,
                         qty: 1
                     });
 

@@ -29,26 +29,11 @@
     export default {
         data() {
             return {
-                name: "",
-                price: "",
-                url: "",
             };
         },
         methods: {
             editNewProduct() {
-                let productFound = this.$store.state.module1.products.filter(item => item.id == this.$route.params.productId);
-
-                if (this.name != '') {
-                    productFound[0].name = this.name;
-                }
-
-                if (this.price != '') {
-                    productFound[0].price = this.price;
-                }
-
-                if (this.url != '') {
-                    productFound[0].url = this.url;
-                }
+                this.$store.commit('updateProduct', this.$route.params.productId);
 
                 this.$toasted.success('Product Updated Successfully', {
                     position: 'top-right',
@@ -63,7 +48,7 @@
         },
         computed: {
             fetchProduct() {
-                return this.$store.state.module1.getProduct;
+                return this.$store.state.module1.editProduct;
             }
         }
     };
