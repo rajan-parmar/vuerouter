@@ -86,7 +86,8 @@
             },
             editProduct(productId) {
                 this.$router.push("/edit/" + productId);
+                this.$store.dispatch('getProduct', productId);
             }
-        }
+        },
     };
 </script>

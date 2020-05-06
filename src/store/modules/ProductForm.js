@@ -1,5 +1,6 @@
 const state = {
     products: [],
+    getProduct: null
 };
 const mutations = {
     addToNew(state, product) {
@@ -7,10 +8,16 @@ const mutations = {
     },
     removeProduct(state, productId) {
         state.products = state.products.filter(product => product.id !== productId);
+    },
+    getProductData(state, productId) {
+        state.getProduct = state.products.filter(product => product.id == productId);
     }
 };
-const actions = {};
-
+const actions = {
+    getProduct({ commit }, productId) {
+        commit('getProductData', productId);
+    }
+};
 const getters = {
     allProducts: state => state.products
 }

@@ -5,17 +5,17 @@
         <form @submit.prevent="editNewProduct">
             <div class="form-group">
                 <label class="font-weight-bold">Name:</label>
-                <input type="text" class="form-control" placeholder="Insert Name" v-model="name"/>
+                <input type="text" class="form-control" placeholder="Insert Name" v-model="fetchProduct[0].name"/>
             </div>
 
             <div class="form-group">
                 <label class="font-weight-bold">Price:</label>
-                <input type="number" class="form-control" placeholder="Insert Price" v-model="price"/>
+                <input type="number" class="form-control" placeholder="Insert Price" v-model="fetchProduct[0].price"/>
             </div>
 
             <div class="form-group">
                 <label class="font-weight-bold">Image Url:</label>
-                <input type="text" class="form-control" placeholder="Insert Image Url" v-model="url"/>
+                <input type="text" class="form-control" placeholder="Insert Image Url" v-model="fetchProduct[0].url"/>
             </div>
 
             <div class="text-center">
@@ -60,6 +60,11 @@
             goHome() {
                 this.$router.push("/");
             },
+        },
+        computed: {
+            fetchProduct() {
+                return this.$store.state.module1.getProduct;
+            }
         }
     };
 </script>
