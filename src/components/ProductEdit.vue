@@ -19,7 +19,7 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary mr-4">Submit</button>
+                <button type="submit" class="btn btn-primary mr-4">Update</button>
                 <button class="btn btn-secondary" @click="goHome()">Cancel</button>
             </div>
         </form>
@@ -29,15 +29,37 @@
     export default {
         data() {
             return {
-                // name: "",
-                // price: "",
-                // url: "",
+                name: "",
+                price: "",
+                url: "",
             };
         },
         methods: {
+            editNewProduct() {
+                let productFound = this.$store.state.module1.products.filter(item => item.id == this.$route.params.productId);
+
+                if (this.name != '') {
+                    productFound[0].name = this.name;
+                }
+
+                if (this.price != '') {
+                    productFound[0].price = this.price;
+                }
+
+                if (this.url != '') {
+                    productFound[0].url = this.url;
+                }
+
+                this.$toasted.success('Product Updated Successfully', {
+                    position: 'top-right',
+                    duration: 900
+                });
+
+                this.$router.push("/");
+            },
             goHome() {
                 this.$router.push("/");
-            }
+            },
         }
     };
 </script>
