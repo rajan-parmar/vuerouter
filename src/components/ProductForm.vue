@@ -19,7 +19,8 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary mr-4">Submit</button>
+                <button class="btn btn-secondary" @click="goHome()">Cancel</button>
             </div>
         </form>
     </div>
@@ -62,6 +63,9 @@
                 }
                 this.$router.push("/");
             },
+            goHome() {
+                this.$router.push("/");
+            }
         }
     };
 </script>
