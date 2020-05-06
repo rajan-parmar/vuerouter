@@ -12,39 +12,17 @@
             </thead>
 
             <tbody>
-                <tr v-if="!this.$store.state.module1.products.length">
+                <tr v-if="!allProducts.length">
                     <td colspan="5" class="text-center">No Records</td>
                 </tr>
 
                 <tr v-for="(product, index) in allProducts" :key="product.id">
                     <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price | currency }}</td>
                     <td>
-                        <input v-model="product.name"
-                            v-if="product.isEdit"
-                            class="form-control"
-                            @keyup.enter=" product.isEdit = false; updateProduct(product.id, product);"
-                        />
-                        <label v-else @click="product.isEdit = true">{{ product.name }}</label>
+                        <img :src="product.url" width="50px" height="50px"/>
                     </td>
-
-                    <td>
-                        <input v-model="product.price"
-                            v-if="product.isEdit"
-                            class="form-control"
-                            @keyup.enter=" product.isEdit = false; updateProduct(product.id, product);"
-                        />
-                        <label v-else @click="product.isEdit = true">{{ product.price | currency }}</label>
-                    </td>
-
-                    <td>
-                        <input v-model="product.url"
-                            v-if="product.isEdit"
-                            class="form-control"
-                            @keyup.enter=" product.isEdit = false; updateProduct(product.id, product); "
-                        />
-                        <img v-else @click="product.isEdit = true" :src="product.url" width="50px" height="50px"/>
-                    </td>
-
                     <td>
                         <button class="btn btn-warning mr-2" title="Edit Product" @click="editProduct(product.id)">
                             <i class="fas fa-edit text-light"></i>
@@ -72,10 +50,10 @@
                 return '$' + parseFloat(value).toFixed(2);
             }
         },
-        computed: mapGetters(["allProducts"]),
+        computed: mapGetters(["allProducts", "allCarts"]),
         methods: {
             addToCart(product) {
-                let itemInCart = this.$store.state.module2.addToCarts.filter(item => item.id === product.id);
+                let itemInCart = this.allCarts.filter(item => item.id === product.id);
 
                 let isItemInCart = itemInCart.length > 0;
 
@@ -97,24 +75,6 @@
                     });
                 }
                 this.$router.push("/cart");
-            },
-            updateProduct(productId, product) {
-                let productInCart = this.$store.state.module2.addToCarts.filter(item => item.id === productId);
-
-                if (productInCart.length === 0) {
-                    return;
-                }
-
-                if (this.$store.state.module2.addToCarts.length > 0) {
-                    productInCart[0].name = product.name;
-                    productInCart[0].price = product.price;
-                    productInCart[0].url = product.url;
-                }
-
-                this.$toasted.success('Product Updated Successfully', {
-                    position: 'top-right',
-                    duration: 900
-                });
             },
             removeProduct(productId) {
                 this.$store.commit('removeProduct', productId);

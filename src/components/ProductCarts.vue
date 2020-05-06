@@ -98,7 +98,7 @@
                 let subTotal = 0;
                 const vm = this;
 
-                this.$store.state.module2.addToCarts.forEach(item => {
+                this.allCarts.forEach(item => {
                     subTotal += item.price * item.qty;
                 });
 
@@ -192,7 +192,7 @@
                     return;
                 }
 
-                this.$store.state.module2.addToCarts.forEach(item => {
+                this.allCarts.forEach(item => {
                     subTotal += item.price * item.qty;
                 });
 

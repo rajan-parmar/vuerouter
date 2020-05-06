@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="container">
-            <div class="top-bar text-center" id="nav">
+            <div class="text-center" id="nav">
                 <router-link to="/">Home</router-link> |
                 <router-link to="/add">Add</router-link> |
                 <router-link to="/cart">Cart</router-link>
