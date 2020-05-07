@@ -1,6 +1,5 @@
 const state = {
     products: [],
-    // editProduct: null
 };
 const mutations = {
     addToNew(state, product) {
