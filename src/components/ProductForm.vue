@@ -59,8 +59,9 @@
                     this.name = "";
                     this.price = "";
                     this.url = "";
+
+                    this.$router.push("/");
                 }
-                this.$router.push("/");
             },
             goHome() {
                 this.$router.push("/");

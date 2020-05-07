@@ -49,20 +49,27 @@
         },
         methods: {
             editNewProduct() {
-                this.$store.commit('updateProduct', {
-                    id: this.id,
-                    name: this.name,
-                    price: this.price,
-                    url: this.url,
-                    qty: this.qty
-                });
+                if (this.name == "" || this.price == "" || this.url == "") {
+                    this.$toasted.error('Please fill blank field', {
+                        position: 'top-right',
+                        duration: 900
+                    });
+                } else {
+                    this.$store.commit('updateProduct', {
+                        id: this.id,
+                        name: this.name,
+                        price: this.price,
+                        url: this.url,
+                        qty: this.qty
+                    });
 
-                this.$toasted.success('Product Updated Successfully', {
-                    position: 'top-right',
-                    duration: 900
-                });
+                    this.$toasted.success('Product Updated Successfully', {
+                        position: 'top-right',
+                        duration: 900
+                    });
 
-                this.$router.push("/");
+                    this.$router.push("/");
+                }
             },
             goHome() {
                 this.$router.push("/");
