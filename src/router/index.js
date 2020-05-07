@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Add from "../views/Add.vue";
-import Cart from "../views/Cart.vue";
-import Edit from "../views/Edit.vue";
+import ProductTable from "@/components/ProductTable.vue";
+import ProductForm from "@/components/ProductForm.vue";
+import ProductCarts from "@/components/ProductCarts.vue";
+import ProductEdit from "@/components/ProductEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -11,22 +11,22 @@ const routes = [
     {
         path: "/",
         name: "Home",
-        component: Home
+        component: ProductTable
     },
     {
         path: "/add",
         name: "add",
-        component: Add
+        component: ProductForm
     },
     {
         path: "/cart",
         name: "cart",
-        component: Cart
+        component: ProductCarts
     },
     {
         path: "/edit/:productId",
         name: "edit",
-        component: Edit
+        component: ProductEdit
     }
 ];
 
