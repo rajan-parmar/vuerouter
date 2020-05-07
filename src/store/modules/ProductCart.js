@@ -10,6 +10,13 @@ const mutations = {
     },
     cartQuantityPlus(state, cartQuantityValue) {
         state.addToCarts.qty = cartQuantityValue;
+    },
+    updateProduct(state, items) {
+        state.addToCarts.forEach((item, index) => {
+            if (item.id == items.id) {
+                state.addToCarts.splice(index, 1, items);
+            }
+        });
     }
 };
 const actions = {};

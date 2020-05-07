@@ -5,17 +5,17 @@
         <form @submit.prevent="editNewProduct">
             <div class="form-group">
                 <label class="font-weight-bold">Name:</label>
-                <input type="text" class="form-control" placeholder="Insert Name" v-model="fetchProduct[0].name"/>
+                <input type="text" class="form-control" placeholder="Insert Name" v-model="name"/>
             </div>
 
             <div class="form-group">
                 <label class="font-weight-bold">Price:</label>
-                <input type="number" class="form-control" placeholder="Insert Price" v-model="fetchProduct[0].price"/>
+                <input type="number" class="form-control" placeholder="Insert Price" v-model="price"/>
             </div>
 
             <div class="form-group">
                 <label class="font-weight-bold">Image Url:</label>
-                <input type="text" class="form-control" placeholder="Insert Image Url" v-model="fetchProduct[0].url"/>
+                <input type="text" class="form-control" placeholder="Insert Image Url" v-model="url"/>
             </div>
 
             <div class="text-center">
@@ -29,11 +29,33 @@
     export default {
         data() {
             return {
+                name: '',
+                price: '',
+                url: '',
+                qty: '',
+                id: this.$route.params.productId
             };
+        },
+        created() {
+            let items = this.$store.state.module1.products;
+            for (let i = 0; i < items.length; i++) {
+                if (this.id == items[i]["id"]) {
+                    this.name = items[i]["name"];
+                    this.price = items[i]["price"];
+                    this.url = items[i]["url"];
+                    this.qty = items[i]["qty"];
+                }
+            }
         },
         methods: {
             editNewProduct() {
-                this.$store.commit('updateProduct', this.$route.params.productId);
+                this.$store.commit('updateProduct', {
+                    id: this.id,
+                    name: this.name,
+                    price: this.price,
+                    url: this.url,
+                    qty: this.qty
+                });
 
                 this.$toasted.success('Product Updated Successfully', {
                     position: 'top-right',
@@ -46,11 +68,6 @@
                 this.$router.push("/");
             },
         },
-        computed: {
-            fetchProduct() {
-                return this.$store.state.module1.editProduct;
-            }
-        }
     };
 </script>
 <style>

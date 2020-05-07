@@ -1,6 +1,6 @@
 const state = {
     products: [],
-    editProduct: null
+    // editProduct: null
 };
 const mutations = {
     addToNew(state, product) {
@@ -9,11 +9,12 @@ const mutations = {
     removeProduct(state, productId) {
         state.products = state.products.filter(product => product.id !== productId);
     },
-    getProduct(state, productId) {
-        state.editProduct = state.products.filter(product => product.id == productId);
-    },
-    updateProduct(state, productId) {
-        state.products.filter(product => product.id == productId);
+    updateProduct(state, items) {
+        state.products.forEach((item, index) => {
+            if (item.id == items.id) {
+                state.products.splice(index, 1, items);
+            }
+        });
     }
 };
 const actions = {};

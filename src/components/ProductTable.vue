@@ -24,7 +24,7 @@
                         <img :src="product.url" width="50px" height="50px"/>
                     </td>
                     <td>
-                        <button class="btn btn-warning mr-2" title="Edit Product" @click="editProduct(product.id, index)">
+                        <button class="btn btn-warning mr-2" title="Edit Product" @click="editProduct(product.id)">
                             <i class="fas fa-edit text-light"></i>
                         </button>
 
@@ -86,7 +86,6 @@
             },
             editProduct(productId) {
                 this.$router.push("/edit/" + productId);
-                this.$store.commit('getProduct', productId);
             }
         },
     };
