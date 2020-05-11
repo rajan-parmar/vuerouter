@@ -2,14 +2,34 @@
     <div id="app">
         <div class="container">
             <div class="text-center" id="nav">
-                <router-link to="/">Home</router-link> |
-                <router-link to="/add">Add</router-link> |
-                <router-link to="/cart">Cart</router-link>
+                <router-link to="/home" v-if="isLogged" class="btn btn-info mr-3">Home</router-link>
+                <router-link to="/add" v-if="isLogged" class="btn btn-info mr-3"> Add</router-link>
+                <router-link to="/cart" v-if="isLogged" class="btn btn-info mr-3"> Cart</router-link>
+                <router-link to="/" v-else></router-link>
+                <button class="btn btn-primary" @click="logout()" v-if="isLogged">
+                    Logout
+                </button>
             </div>
             <router-view />
         </div>
     </div>
 </template>
+<script>
+    import { mapGetters } from 'vuex'
+
+    export default {
+        computed: {
+            ...mapGetters([
+                'isLogged'
+            ])
+        },
+        methods: {
+            logout () {
+                this.$store.dispatch('logout');
+            }
+        }
+    }
+</script>
 <style>
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
