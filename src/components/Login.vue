@@ -26,7 +26,6 @@
             return {
                 email: '',
                 password: '',
-                isLoggedIn: localStorage.getItem('isLoggedIn') == 'true'
             }
         },
         methods: {
@@ -37,28 +36,24 @@
                         duration: 900
                     });
                 } else {
-                    this.$axios.get('/sanctum/csrf-cookie').then(() => {
-                        this.$axios.post('/login', {
-                            email: this.email,
-                            password: this.password
-                        })
-                        .then(() => {
-                            localStorage.setItem('isLoggedIn', 'true');
-                            this.isLoggedIn = true;
-                            this.$toasted.success('Login Successfully', {
-                                position: 'top-right',
-                                duration: 900
-                            });
-
-                            this.$router.push('/home');
-                        })
-                        .catch(() => {
-                            this.$toasted.error('Enter Valid Email & Password', {
-                                position: 'top-right',
-                                duration: 900
-                            });
+                    this.$store.dispatch("login", {
+                        email: this.email,
+                        password: this.password
+                    })
+                    .then(() => {
+                        this.$toasted.success('Login Successfully', {
+                            position: 'top-right',
+                            duration: 900
                         });
-                    });
+
+                        this.$router.push({ name: "Home"});
+                    })
+                    .catch(() => {
+                        this.$toasted.error('Enter Valid Email & Password', {
+                            position: 'top-right',
+                            duration: 900
+                        });
+                    })
                 }
             }
         }
