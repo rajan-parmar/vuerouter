@@ -26,6 +26,8 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
         data() {
             return {
@@ -36,8 +38,11 @@
                 id: this.$route.params.productId
             };
         },
+        computed: {
+            ...mapGetters(['allProducts'])
+        },
         created() {
-            let items = this.$store.state.ProductForm.products;
+            let items = this.allProducts;
             for (let i = 0; i < items.length; i++) {
                 if (this.id == items[i]["id"]) {
                     this.name = items[i]["name"];

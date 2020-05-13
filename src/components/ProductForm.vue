@@ -26,6 +26,8 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
         data() {
             return {
@@ -33,6 +35,9 @@
                 price: "",
                 url: "",
             };
+        },
+        computed: {
+            ...mapGetters(['allProducts'])
         },
         methods: {
             addNewProduct() {
@@ -42,7 +47,7 @@
                         duration: 900
                     });
                 } else {
-                    let uniqueId = this.$store.state.ProductForm.products.length + 1;
+                    let uniqueId = this.allProducts.length + 1;
                     this.$store.commit('addToNew', {
                         id: uniqueId,
                         name: this.name,
