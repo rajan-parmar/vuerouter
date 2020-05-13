@@ -36,24 +36,29 @@
                         duration: 900
                     });
                 } else {
-                    this.$store.dispatch("login", {
-                        email: this.email,
-                        password: this.password
-                    })
-                    .then(() => {
-                        this.$toasted.success('Login Successfully', {
-                            position: 'top-right',
-                            duration: 900
-                        });
+                    this.$axios.get('/sanctum/csrf-cookie').then(() => {
+                        this.$axios.post('api/login', {
+                            email: this.email,
+                            password: this.password
+                        })
+                        .then(({ data }) => {
+                            this.$store.commit("setUserData", data);
+                            this.$toasted.success('Login Successfully', {
+                                position: 'top-right',
+                                duration: 900
+                            });
 
-                        this.$router.push({ name: "Home"});
-                    })
-                    .catch(() => {
-                        this.$toasted.error('Enter Valid Email & Password', {
-                            position: 'top-right',
-                            duration: 900
-                        });
-                    })
+                            this.$router.push({ name: "Home" });
+                        })
+                        .catch(error => {
+                            if (error.response.status === 422) {
+                                this.$toasted.error('Enter Valid Email & Password', {
+                                    position: 'top-right',
+                                    duration: 900
+                                });
+                            }
+                        })
+                    });
                 }
             }
         }

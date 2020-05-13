@@ -68,11 +68,11 @@
                         duration: 900
                     });
 
-                    this.$router.push("/");
+                    this.$router.push("/home");
                 }
             },
             goHome() {
-                this.$router.push("/");
+                this.$router.push("/home");
             },
         },
     };

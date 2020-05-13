@@ -25,7 +25,10 @@
         },
         methods: {
             logout () {
-                this.$store.dispatch('logout');
+                this.$axios.post('api/logout')
+                .then(() => {
+                    this.$store.commit('logout');
+                })
             }
         }
     }

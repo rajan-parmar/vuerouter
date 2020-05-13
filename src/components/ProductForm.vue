@@ -60,11 +60,11 @@
                     this.price = "";
                     this.url = "";
 
-                    this.$router.push("/");
+                    this.$router.push("/home");
                 }
             },
             goHome() {
-                this.$router.push("/");
+                this.$router.push("/home");
             }
         }
     };

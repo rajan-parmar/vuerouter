@@ -20,21 +20,9 @@ export default new Vuex.Store({
             localStorage.setItem('user', JSON.stringify(userData))
             axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`;
         },
-        clearUserData() {
+        logout() {
             localStorage.removeItem('user')
             location.reload()
-        }
-    },
-    actions: {
-        login({ commit }, credentials) {
-            return axios.get('sanctum/csrf-cookie').then(() => {
-                axios.post('api/login', credentials).then(({ data }) => {
-                    commit("setUserData", data);
-                })
-            });
-        },
-        logout({ commit }) {
-            commit('clearUserData')
         }
     },
     getters: {
