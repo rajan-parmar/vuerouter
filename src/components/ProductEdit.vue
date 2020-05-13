@@ -37,7 +37,7 @@
             };
         },
         created() {
-            let items = this.$store.state.module1.products;
+            let items = this.$store.state.ProductForm.products;
             for (let i = 0; i < items.length; i++) {
                 if (this.id == items[i]["id"]) {
                     this.name = items[i]["name"];

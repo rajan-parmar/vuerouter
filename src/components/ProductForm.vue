@@ -42,7 +42,7 @@
                         duration: 900
                     });
                 } else {
-                    let uniqueId = this.$store.state.module1.products.length + 1;
+                    let uniqueId = this.$store.state.ProductForm.products.length + 1;
                     this.$store.commit('addToNew', {
                         id: uniqueId,
                         name: this.name,

@@ -255,7 +255,7 @@
                 let discountType = document.getElementById("discount-type").value;
                 let discountValue = document.getElementById("discount-value").value;
 
-                if (this.$store.state.module2.addToCarts.length === 0) {
+                if (this.$store.state.ProductCart.addToCarts.length === 0) {
                     this.$toasted.error('Empty Cart', {
                         position: 'top-right',
                         duration: 900
@@ -277,14 +277,14 @@
                 this.finalDiscountValue = discountValue;
             },
             removeCartItem(index) {
-                this.$store.state.module2.addToCarts.splice(index, 1);
+                this.$store.state.ProductCart.addToCarts.splice(index, 1);
                 this.$toasted.success('Item removed from the cart successfully', {
                     position: 'top-right',
                     duration: 900
                 });
             },
             plusCartQuantity(addToCart) {
-                let itemInCartForPlus = this.$store.state.module2.addToCarts.filter(
+                let itemInCartForPlus = this.$store.state.ProductCart.addToCarts.filter(
                     item => item.id === addToCart.id
                 );
                 itemInCartForPlus[0].qty += 1;
@@ -296,13 +296,13 @@
 
             },
             minusCartQuantity(addToCart) {
-                let itemInCartForMinus = this.$store.state.module2.addToCarts.filter(
+                let itemInCartForMinus = this.$store.state.ProductCart.addToCarts.filter(
                     item => item.id === addToCart.id
                 );
                 itemInCartForMinus[0].qty -= 1;
 
                 if (itemInCartForMinus[0].qty === 0) {
-                    this.$store.state.module2.addToCarts.splice(0 - 1, 1);
+                    this.$store.state.ProductCart.addToCarts.splice(0 - 1, 1);
                 }
 
                 this.$toasted.success('Cart item updated successfully', {
