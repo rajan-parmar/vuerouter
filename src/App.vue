@@ -2,11 +2,11 @@
     <div id="app">
         <div class="container">
             <div class="text-center" id="nav">
-                <router-link to="/home" v-if="isLogged" class="btn btn-info mr-3">Home</router-link>
-                <router-link to="/add" v-if="isLogged" class="btn btn-info mr-3"> Add</router-link>
-                <router-link to="/cart" v-if="isLogged" class="btn btn-info mr-3"> Cart</router-link>
+                <router-link to="/home" v-if="isLoggedIn" class="btn btn-info mr-3">Home</router-link>
+                <router-link to="/add" v-if="isLoggedIn" class="btn btn-info mr-3"> Add</router-link>
+                <router-link to="/cart" v-if="isLoggedIn" class="btn btn-info mr-3"> Cart</router-link>
                 <router-link to="/" v-else></router-link>
-                <button class="btn btn-primary" @click="logout()" v-if="isLogged">
+                <button class="btn btn-primary" @click="logout()" v-if="isLoggedIn">
                     Logout
                 </button>
             </div>
@@ -15,17 +15,18 @@
     </div>
 </template>
 <script>
-    import { mapGetters } from 'vuex'
-
     export default {
-        computed: {
-            ...mapGetters([
-                'isLogged'
-            ])
+        data() {
+            return {
+                isLoggedIn: localStorage.getItem('isLoggedIn') == 'true'
+            }
         },
         methods: {
             logout () {
-                this.$store.dispatch('logout');
+                localStorage.removeItem('isLoggedIn', 'true');
+                this.isLoggedIn = false;
+                this.$axios.post('/logout');
+                this.$router.push('/');
             }
         }
     }
